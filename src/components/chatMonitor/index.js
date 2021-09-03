@@ -1,3 +1,3 @@
-import {ChatMonitor} from "./chatMonitor";
+import ChatMonitor from "./chatMonitor";
 
 export default ChatMonitor;
