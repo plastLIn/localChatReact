@@ -2,7 +2,7 @@ import {
     CORRECT_MESSEGE_TEXT,
     CREATE_MESSEGE,
     DELETE_MESSEGE,
-    INCREMENT_ID_COUNTER,
+    INCREMENT_ID_COUNTER, LOGIN_USER,
     SET_CORRECTING_MESSEGE
 } from "./types";
 
@@ -38,5 +38,13 @@ export function correctTextMessege(correctMessege, id) {
         type: CORRECT_MESSEGE_TEXT,
         payload: correctMessege,
         id
+    }
+}
+
+export function onLoginUser(login, passw) {
+    return {
+        type: LOGIN_USER,
+        login,
+        passw
     }
 }

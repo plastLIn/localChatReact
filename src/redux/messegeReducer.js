@@ -6,7 +6,7 @@ import {
     SET_CORRECTING_MESSEGE
 } from "./types";
 
-let initialState = {
+const initialState = {
     messeges: [],
     messegeIdCounter: 0
 };
@@ -20,9 +20,21 @@ export const messegeReducer = (state = initialState, action) => {
         case DELETE_MESSEGE:
             return {...state, messeges: state.messeges.filter((mes) => mes.id !== action.payload)}
         case SET_CORRECTING_MESSEGE:
-            return {...state, messeges: state.messeges.map((messege) => (messege.id === action.payload) ? {...messege, isCorrecting: true} : messege)}
+            return {...state,
+                messeges: state.messeges.map((messege) => (messege.id === action.payload) ? {
+                    ...messege,
+                    isCorrecting: true
+                } : messege)
+            }
         case CORRECT_MESSEGE_TEXT:
-            return {...state, messeges: state.messeges.map((messege) => (messege.id === action.id) ? {...messege, isCorrecting: false, text: action.payload} : messege)}
-        default: return state;
+            return {...state,
+                messeges: state.messeges.map((messege) => (messege.id === action.id) ? {
+                    ...messege,
+                    isCorrecting: false,
+                    text: action.payload
+                } : messege)
+            }
+        default:
+            return state;
     }
 }
