@@ -1,4 +1,10 @@
-import {CREATE_MESSEGE, DELETE_MESSEGE, INCREMENT_ID_COUNTER} from "./types";
+import {
+    CORRECT_MESSEGE_TEXT,
+    CREATE_MESSEGE,
+    DELETE_MESSEGE,
+    INCREMENT_ID_COUNTER,
+    SET_CORRECTING_MESSEGE
+} from "./types";
 
 export function createMessege(messege) {
     return {
@@ -17,5 +23,20 @@ export function deleteMessege(deletingMessegeId) {
     return {
         type: DELETE_MESSEGE,
         payload: deletingMessegeId
+    }
+}
+
+export function setCorrectingMessege(correctMessegeId) {
+    return {
+        type: SET_CORRECTING_MESSEGE,
+        payload: correctMessegeId
+    }
+}
+
+export function correctTextMessege(correctMessege, id) {
+    return {
+        type: CORRECT_MESSEGE_TEXT,
+        payload: correctMessege,
+        id
     }
 }

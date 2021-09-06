@@ -1,23 +1,17 @@
 import React from "react";
 import {connect} from "react-redux";
-import {deleteMessege} from "../../redux/actions";
+import {deleteMessege, correctTextMessege, setCorrectingMessege} from "../../redux/actions";
+import {ChatMessage} from "../chatMessege/chatMessage";
 
-function ChatMonitor ({ syncMesseges, deleteMessege }) {
+function ChatMonitor({ syncMessages, deleteMessege, setCorrectingMessege, correctTextMessege}) {
 
-    function onDeleteMessege (el) {
-        deleteMessege(el.target.id);
-    }
-
-    const el = syncMesseges.map((messege) => {
-        return (
-            <div key={ messege.id }>
-                <span>{ messege.time } </span>
-                <span>{ messege.text }</span>
-                <button id={ messege.id }
-                    onClick={onDeleteMessege}>Delete</button>
-            </div>
-        )
+    const el = syncMessages.map((message) => {
+        return (<ChatMessage message={message}
+                             onDeleteMessage={deleteMessege}
+                             onSetCorrectingMessage={setCorrectingMessege}
+                             onCorrectTextMessage={correctTextMessege}/>);
     });
+
     return (
         <div>
             { el }
@@ -27,12 +21,14 @@ function ChatMonitor ({ syncMesseges, deleteMessege }) {
 
 const mapStateToProps = state => {
     return {
-        syncMesseges: state.messeges.messeges,
+        syncMessages: state.messeges.messeges
     };
 }
 
 const mapDispatchToProps = {
-    deleteMessege
+    deleteMessege,
+    correctTextMessege,
+    setCorrectingMessege
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatMonitor);

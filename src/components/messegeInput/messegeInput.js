@@ -1,24 +1,38 @@
-import {Button, TextField} from "@material-ui/core";
+import {Button, makeStyles, TextField} from "@material-ui/core";
 import {connect} from "react-redux";
 import {createMessege, incrementIdCounter} from "../../redux/actions";
 import {useState} from "react";
+
+const useStyles = makeStyles((theme) => ({
+    inputMessegeForm: {
+        backgroundColor: "red",
+    },
+}));
 
 function MessegeInput ({ messegeId, createMessege, incrementIdCounter }) {
 
     const [ text, setText ] = useState('');
 
+    const muiClasses = useStyles();
+    let classes = '';
+
     function onLabelChange (e) {
         setText(e.target.value)
     }
 
-    // eslint-disable-next-line no-unused-expressions
-
     function onEnterMessege (e) {
         e.preventDefault();
-        incrementIdCounter()
-        const time = new Date();
-        createMessege({ text, id: messegeId + 1, time: `${time.getHours()}:${time.getMinutes()}` })
-        setText('');
+        if (text.length){
+            incrementIdCounter()
+            const time = new Date();
+            createMessege({ text,
+                            id: messegeId + 1,
+                            time: `${time.getHours()}:${time.getMinutes()}`,
+                            isCorrecting: false})
+            setText('');
+        } else {
+            classes += muiClasses.inputMessegeForm;
+        }
     }
 
     return (
@@ -27,8 +41,12 @@ function MessegeInput ({ messegeId, createMessege, incrementIdCounter }) {
                        label=""
                        variant="outlined"
                        value={ text }
+                       className={classes}
+                       placeholder="Enter sending message"
                        onChange={onLabelChange}/>
-            <Button type="submit" variant="contained" color="contained">Send</Button>
+                <Button type="submit"
+                        variant="contained">
+                    Send</Button>
         </form>
     );
 }
