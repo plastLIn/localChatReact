@@ -1,3 +1,3 @@
 import {ChatMessage} from "./chatMessage";
 
-export default ChatMessage();
+export default ChatMessage;

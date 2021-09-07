@@ -1,15 +1,15 @@
 import {Button, makeStyles, TextField} from "@material-ui/core";
 import {connect} from "react-redux";
-import {createMessege, incrementIdCounter} from "../../redux/actions";
+import {createMessage, incrementIdCounter} from "../../redux/actions";
 import {useState} from "react";
 
 const useStyles = makeStyles((theme) => ({
-    inputMessegeForm: {
+    inputMessageForm: {
         backgroundColor: "red",
     },
 }));
 
-function MessegeInput ({ messegeId, createMessege, incrementIdCounter }) {
+function MessageInput ({ messageId, createMessage, incrementIdCounter }) {
 
     const [ text, setText ] = useState('');
 
@@ -20,23 +20,23 @@ function MessegeInput ({ messegeId, createMessege, incrementIdCounter }) {
         setText(e.target.value)
     }
 
-    function onEnterMessege (e) {
+    function onEnterMessage (e) {
         e.preventDefault();
         if (text.length){
             incrementIdCounter()
             const time = new Date();
-            createMessege({ text,
-                            id: messegeId + 1,
+            createMessage({ text,
+                            id: messageId + 1,
                             time: `${time.getHours()}:${time.getMinutes()}`,
                             isCorrecting: false})
             setText('');
         } else {
-            classes += muiClasses.inputMessegeForm;
+            classes += muiClasses.inputMessageForm;
         }
     }
 
     return (
-        <form onSubmit={ onEnterMessege }>
+        <form onSubmit={ onEnterMessage }>
             <TextField id="outlined-basic"
                        label=""
                        variant="outlined"
@@ -53,13 +53,13 @@ function MessegeInput ({ messegeId, createMessege, incrementIdCounter }) {
 
 const mapStateToProps = state => {
     return {
-        messegeId: state.messeges.messegeIdCounter
+        messageId: state.messages.messageIdCounter
     };
 };
 
 const mapDispatchToProps = {
-    createMessege,
+    createMessage,
     incrementIdCounter
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MessegeInput);
+export default connect(mapStateToProps, mapDispatchToProps)(MessageInput);

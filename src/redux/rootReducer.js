@@ -1,9 +1,9 @@
 import {combineReducers} from "@reduxjs/toolkit";
-import {messegeReducer} from "./messegeReducer";
+import {messageReducer} from "./messageReducer";
 import {authorizationReducer} from "./authorizationReducer";
 
 const rootReducer = combineReducers({
-    messeges: messegeReducer,
+    messages: messageReducer,
     auth: authorizationReducer
 })
 

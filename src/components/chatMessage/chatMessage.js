@@ -4,13 +4,13 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 
 const useStyle = makeStyles({
-    messegeBox: {
+    messageBox: {
         display: 'flex',
         width: '100%',
         justifyContent: 'space-between',
         alignItems: 'center',
     },
-    messegeTextBox: {
+    messageTextBox: {
 
     },
 })
@@ -21,7 +21,7 @@ export function ChatMessage ({message, onCorrectTextMessage, onDeleteMessage, on
     const classes = useStyle();
 
     return (
-        <div key={message.id} className={classes.messegeBox}>
+        <div key={message.id} className={classes.messageBox}>
             <div>
                 <span>{message.time} </span>
                 {message.isCorrecting && <TextField onChange={(e) => setMessageText(e.target.value)}

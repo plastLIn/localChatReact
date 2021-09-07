@@ -1,15 +1,15 @@
 import {
-    CORRECT_MESSEGE_TEXT,
-    CREATE_MESSEGE,
-    DELETE_MESSEGE,
-    INCREMENT_ID_COUNTER, LOGIN_USER,
-    SET_CORRECTING_MESSEGE
+    CORRECT_MESSAGE_TEXT,
+    CREATE_MESSAGE,
+    DELETE_MESSAGE,
+    INCREMENT_ID_COUNTER,
+    SET_CORRECTING_MESSAGE
 } from "./types";
 
-export function createMessege(messege) {
+export function createMessage(message) {
     return {
-        type: CREATE_MESSEGE,
-        payload: messege
+        type: CREATE_MESSAGE,
+        payload: message
     }
 }
 
@@ -19,32 +19,25 @@ export function incrementIdCounter() {
     }
 }
 
-export function deleteMessege(deletingMessegeId) {
+export function deleteMessage(messageId) {
     return {
-        type: DELETE_MESSEGE,
-        payload: deletingMessegeId
+        type: DELETE_MESSAGE,
+        payload: messageId
     }
 }
 
-export function setCorrectingMessege(correctMessegeId) {
+export function setCorrectingMessage(correctMessageId) {
     return {
-        type: SET_CORRECTING_MESSEGE,
-        payload: correctMessegeId
+        type: SET_CORRECTING_MESSAGE,
+        payload: correctMessageId
     }
 }
 
-export function correctTextMessege(correctMessege, id) {
+export function correctTextMessage(correctMessage, id) {
     return {
-        type: CORRECT_MESSEGE_TEXT,
-        payload: correctMessege,
-        id
+        type: CORRECT_MESSAGE_TEXT,
+        payload: {correctMessage,
+            id}
     }
 }
 
-export function onLoginUser(login, passw) {
-    return {
-        type: LOGIN_USER,
-        login,
-        passw
-    }
-}

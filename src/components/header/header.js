@@ -22,7 +22,7 @@ export function Header() {
                 <Link to="/">
                     <div>Home</div>
                 </Link>
-                <Link to="/">
+                <Link to="/chat">
                     <div>Chat</div>
                 </Link>
             </div>

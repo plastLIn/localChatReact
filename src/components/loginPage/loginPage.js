@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Button, makeStyles, TextField} from "@material-ui/core";
 import {useDispatch} from "react-redux";
-import {onLoginUser} from "../../redux/actions";
+import {onLoginUser} from "../../redux/authAction";
 
 const useStyle = makeStyles((theme) => ({
     loginForm: {
@@ -15,7 +15,7 @@ const useStyle = makeStyles((theme) => ({
 
 export function LoginPage() {
     const [login, setLogin] = useState('');
-    const [passw, setPassw] = useState('');
+    const [password, setPassword] = useState('');
     const classes = useStyle();
 
     const dispatch = useDispatch()
@@ -23,12 +23,14 @@ export function LoginPage() {
     function onLogin(e) {
         e.preventDefault();
         if (login === 'test@a.com') {
-            if (passw === 'test') {
-                dispatch(onLoginUser(login, passw));
+            if (password === 'test') {
+                dispatch(onLoginUser(login, password));
                 setLogin('');
+                console.log("Accepted")
             }
         }
-        setPassw('');
+
+        setPassword('');
     }
 
     return (
@@ -45,7 +47,7 @@ export function LoginPage() {
                            label="Password"
                            variant="outlined"
                            type="password"
-                           onChange={(e) => setPassw(e.target.value)}/>
+                           onChange={(e) => setPassword(e.target.value)}/>
             </div>
             <Button type="submit"
                     className={classes.loginButton}
@@ -54,10 +56,3 @@ export function LoginPage() {
         </form>
     )
 }
-
-// const mapDispatchToProps = {
-//     onLoginUser
-// }
-
-// export default connect(null, mapDispatchToProps)(LoginPage);
-export default LoginPage;
